@@ -1,0 +1,25 @@
+{
+  "name": "solution-pioneers/magento-checkout-login-step",
+  "description": "Magento 2 Checkout Login Step Extension",
+  "require": {
+    "magento/module-sales": "*"
+  },
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Solution Pioneers",
+      "email": "hello@solution-pioneers.com",
+      "homepage": "https://www.solution-pioneers.com"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "SolutionPioneers\\CheckoutLoginStep\\": ""
+    }
+  }
+}

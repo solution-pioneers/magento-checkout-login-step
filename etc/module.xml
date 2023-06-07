@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Solution Pioneers
+ *
+ * @category    SolutionPioneers
+ * @package     SolutionPioneers_OrderFeedback
+ * @copyright   Copyright (c) Solution Pioneers (https://www.solution-pioneers.com/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="SolutionPioneers_CheckoutLoginStep" setup_version="1.0.0">
+        <sequence>
+            <module name="Magento_Checkout"/>
+        </sequence>
+    </module>
+</config>
