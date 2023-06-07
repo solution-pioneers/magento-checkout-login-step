@@ -1,6 +1,6 @@
-# Magento Checkout Login Step extension
+# Magento Checkout Login Step extension (Work In Progress)
 
-## 1. How to install Magento Order Feedback
+## 1. How to install Magento Checkout Login Step
 
 Install via composer (recommend)
 
