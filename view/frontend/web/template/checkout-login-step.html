@@ -1,18 +1,72 @@
 <li data-bind="fadeVisible: isVisible, attr: { id: stepCode }">
     <div class="step-title" data-bind="i18n: stepTitle" data-role="title"></div>
-        <div id="checkout-step-title"
-             class="step-content"
-             data-role="content">
-             <p>Login</p>
-            <form data-bind="submit: navigateToNextStep" novalidate="novalidate">
-                <div class="actions-toolbar">
-                    <div class="primary">
-                        <button data-role="opc-continue" type="submit" class="button action continue primary">
-                            <span><!-- ko i18n: 'Next'--><!-- /ko --></span>
-                        </button>
+        <div id="checkout-step-login" class="checkout-step-login step-content" data-role="content">
+            <div class="authentication-wrapper" data-block="authentication">
+                <div class="block-authentication">
+                    <!-- ko foreach: getRegion('before') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <!-- /ko -->
+                    <div class="block block-customer-login">
+                        <!-- ko foreach: getRegion('messages') -->
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                        <!--/ko-->
+                        <div class="block-content" aria-labelledby="block-customer-login-heading">
+                            <h3><span data-bind="i18n: 'Already client?'"></span></h3>
+                            <form data-role="login" method="post" novalidate="novalidate">
+                                <div class="fieldset">
+                                    <div class="field field-email required">
+                                        <div class="control">
+                                            <input 
+                                                name="username" 
+                                                id="login-email" 
+                                                type="email" 
+                                                class="input-text" 
+                                                data-bind="attr: {placeholder: $t('Email Address')}" 
+                                                data-validate="{required:true, 'validate-email':true}" />
+                                        </div>
+                                    </div>
+                                    <div class="field field-password required">
+                                        <div class="control">
+                                            <input 
+                                                type="password" 
+                                                class="input-text" 
+                                                id="login-password" 
+                                                name="password" 
+                                                data-validate="{required:true}" 
+                                                data-bind="attr: {placeholder: $t('Password')}" 
+                                                autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <!-- ko foreach: getRegion('additional-login-form-fields') -->
+                                    <!-- ko template: getTemplate() --><!-- /ko -->
+                                    <!-- /ko -->
+                                </div>
+                                <div class="actions-toolbar">
+                                    <input name="context" type="hidden" value="checkout" />
+                                    <div class="secondary">
+                                        <a class="action action-remind">
+                                            <span data-bind="i18n: 'Forgot Your Password?'"></span>
+                                        </a>
+                                    </div>
+                                    <div class="primary">
+                                        <button type="submit" class="action action-login primary">
+                                            <span data-bind="i18n: 'Sign In'"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <h3><span data-bind="i18n: 'Order as a Guest'"></span></h3>
+                            <div class="actions-toolbar">
+                                <div class="primary">
+                                    <button type="button" class="action primary">
+                                        <span data-bind="i18n: 'Further as a guest'"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </li>

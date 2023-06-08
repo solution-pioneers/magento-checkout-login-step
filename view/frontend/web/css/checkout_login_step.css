@@ -1,0 +1,11 @@
+.checkout-step-login {
+    float: left;
+    width: 100%;
+}
+
+.opc-wrapper .checkout-step-login .authentication-wrapper {
+    float: none;
+    width: 350px;
+    max-width: 350px;
+    margin: 0 auto;
+}
