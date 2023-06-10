@@ -55,14 +55,17 @@
                                     </div>
                                 </div>
                             </form>
-                            <h3><span data-bind="i18n: 'Order as a Guest'"></span></h3>
-                            <div class="actions-toolbar">
-                                <div class="primary">
-                                    <button type="button" class="action primary">
-                                        <span data-bind="i18n: 'Further as a guest'"></span>
-                                    </button>
+                            <form data-bind="submit: navigateToNextStep" novalidate="novalidate">
+                                <h3><span data-bind="i18n: 'New here?'"></span></h3>
+                                <p data-bind="i18n: 'Complete your purchase without registration. At the end of the process you can optionally create an account.'"></p>
+                                <div class="actions-toolbar">
+                                    <div class="primary">
+                                        <button type="submit" data-role="opc-continue" class="button action continue primary">
+                                            <span data-bind="i18n: 'Further as a guest'"></span>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

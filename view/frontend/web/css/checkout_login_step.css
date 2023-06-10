@@ -5,7 +5,44 @@
 
 .opc-wrapper .checkout-step-login .authentication-wrapper {
     float: none;
-    width: 350px;
-    max-width: 350px;
+    width: 400px;
+    max-width: 400px;
     margin: 0 auto;
+}
+
+
+.checkout-step-login .authentication-wrapper h3 {
+    float: left;
+}
+
+.checkout-step-login .authentication-wrapper .fieldset {
+    margin-bottom: 20px;
+}
+
+.checkout-step-login .authentication-wrapper form .actions-toolbar {
+    margin-bottom: 20px;
+}
+
+.checkout-step-login .authentication-wrapper .actions-toolbar  .primary,
+.checkout-step-login .authentication-wrapper .actions-toolbar  .secondary {
+    float: left;
+    width: 100%;
+}
+
+.checkout-step-login .authentication-wrapper .actions-toolbar  .secondary .action {
+    float: left;
+    margin: 0;
+    line-height: 35px;
+}
+
+.checkout-step-login .authentication-wrapper .actions-toolbar  .button {
+    width: 100%;
+}
+
+
+.checkout-step-login .authentication-wrapper .block-content p {
+    float: left;
+    width: 100%;
+    line-height: 25px;
+    text-align: left;
 }
