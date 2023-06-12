@@ -46,3 +46,15 @@
     line-height: 25px;
     text-align: left;
 }
+
+.checkout-step-login .authentication-wrapper .mage-error {
+    line-height: 20px;
+    text-align: left;
+}
+
+.checkout-step-login .authentication-wrapper .messages .message-error {
+    text-align: left;
+    margin: 0;
+    padding: 0px 0px 0px 40px;
+    line-height: 44px;
+}

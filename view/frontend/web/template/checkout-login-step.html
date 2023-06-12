@@ -12,7 +12,7 @@
                         <!--/ko-->
                         <div class="block-content" aria-labelledby="block-customer-login-heading">
                             <h3><span data-bind="i18n: 'Already client?'"></span></h3>
-                            <form data-role="login" method="post" novalidate="novalidate">
+                            <form data-role="login" data-bind="submit:login" method="post" novalidate="novalidate">
                                 <div class="fieldset">
                                     <div class="field field-email required">
                                         <div class="control">

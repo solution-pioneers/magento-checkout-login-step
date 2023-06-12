@@ -1,20 +1,21 @@
 define(
     [
+        'jquery',
         'ko',
         'uiComponent',
         'underscore',
         'Magento_Checkout/js/model/step-navigator',
+        'Magento_Customer/js/action/login',
         'Magento_Customer/js/model/customer',
-        'mage/translate'
+        'Magento_Checkout/js/model/authentication-messages',
+        'Magento_Checkout/js/model/full-screen-loader'
     ],
-    function (
-        ko,
-        Component,
-        _,
-        stepNavigator,
-        customer
-    ) {
+    function ($, ko, Component, _, stepNavigator, loginAction, customer, messageContainer, fullScreenLoader) 
+    {
         'use strict';
+
+        var checkoutConfig = window.checkoutConfig;
+
         /**
         * check-login - is the name of the component's .html template
         */
@@ -44,6 +45,32 @@ define(
                 );
 
                 return this;
+            },
+
+             /**
+             * Provide login action.
+             *
+             * @param {HTMLElement} loginForm
+             */
+            login: function (loginForm) {
+                var loginData = {},
+                    formDataArray = $(loginForm).serializeArray();
+
+                    formDataArray.forEach(function (entry) {
+                        loginData[entry.name] = entry.value;
+                    });
+
+                    if ($(loginForm).validation() &&
+                        $(loginForm).validation('isValid')
+                    ) {
+                        fullScreenLoader.startLoader();
+                        loginAction(loginData, checkoutConfig.checkoutUrl, undefined, messageContainer).always(function () {
+                            fullScreenLoader.stopLoader();
+                            //stepNavigator.next();
+                        });
+
+                        
+                    }
             },
 
             navigate: function () {
