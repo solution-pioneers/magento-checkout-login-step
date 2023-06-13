@@ -9,6 +9,11 @@
                         <item name="components" xsi:type="array">
                             <item name="checkout" xsi:type="array">
                                 <item name="children" xsi:type="array">
+                                    <item name="authentication" xsi:type="array">
+                                        <item name="config" xsi:type="array">
+                                            <item name="componentDisabled" xsi:type="boolean">true</item>
+                                        </item>
+                                    </item>
                                     <item name="steps" xsi:type="array">
                                         <item name="children" xsi:type="array">
                                             <!-- The new step you add -->
