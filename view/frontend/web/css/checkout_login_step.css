@@ -47,6 +47,11 @@
     text-align: left;
 }
 
+.checkout-step-login .authentication-wrapper .block-customer {
+    float: left;
+    text-align: left;
+}
+
 .checkout-step-login .authentication-wrapper .mage-error {
     line-height: 20px;
     text-align: left;

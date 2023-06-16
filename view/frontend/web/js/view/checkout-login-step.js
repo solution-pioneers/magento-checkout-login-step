@@ -5,7 +5,7 @@ define(
         'uiComponent',
         'underscore',
         'Magento_Checkout/js/model/step-navigator',
-        'Magento_Customer/js/action/login',
+        'SolutionPioneers_CheckoutLoginStep/js/action/login',
         'Magento_Customer/js/model/customer',
         'Magento_Checkout/js/model/authentication-messages',
         'Magento_Checkout/js/model/full-screen-loader'
@@ -13,8 +13,6 @@ define(
     function ($, ko, Component, _, stepNavigator, loginAction, customer, messageContainer, fullScreenLoader) 
     {
         'use strict';
-
-        var checkoutConfig = window.checkoutConfig;
 
         /**
         * check-login - is the name of the component's .html template
@@ -25,7 +23,8 @@ define(
             },
 
             isVisible: ko.observable(true),
-            isLogedIn: customer.isLoggedIn(),
+            customerEmail: ko.observable(),
+            isLoggedIn: customer.isLoggedIn(),
             stepCode: 'login',
             stepTitle: 'Login',
 
@@ -43,9 +42,14 @@ define(
                     _.bind(this.navigate, this),
                     5
                 );
+                
+                if (this.isLoggedIn) {
+                    this.customerEmail = customer.customerData.email;
+                }   
 
                 return this;
             },
+
 
              /**
              * Provide login action.
@@ -64,9 +68,9 @@ define(
                         $(loginForm).validation('isValid')
                     ) {
                         fullScreenLoader.startLoader();
-                        loginAction(loginData, checkoutConfig.checkoutUrl, undefined, messageContainer).always(function () {
+                        loginAction(loginData, undefined, messageContainer).always(function () {
                             fullScreenLoader.stopLoader();
-                            //stepNavigator.next();
+                            stepNavigator.next();
                         });
 
                         

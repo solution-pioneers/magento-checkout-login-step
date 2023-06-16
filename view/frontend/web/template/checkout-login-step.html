@@ -6,7 +6,7 @@
                     <!-- ko foreach: getRegion('before') -->
                     <!-- ko template: getTemplate() --><!-- /ko -->
                     <!-- /ko -->
-                    <div class="block block-customer-login">
+                    <div class="block-customer-login" data-bind="visible: !isLoggedIn">
                         <!-- ko foreach: getRegion('messages') -->
                         <!-- ko template: getTemplate() --><!-- /ko -->
                         <!--/ko-->
@@ -67,6 +67,19 @@
                                 </div>
                             </form>
                         </div>
+                    </div>
+                    <div class="block-customer" data-bind="visible: isLoggedIn">
+                        <span data-bind="text: customerEmail"></span>
+                        <form data-bind="submit: navigateToNextStep" novalidate="novalidate">
+                            <p data-bind="i18n: 'Complete your purchase without registration.'"></p>
+                            <div class="actions-toolbar">
+                                <div class="primary">
+                                    <button type="submit" data-role="opc-continue" class="button action continue primary">
+                                        <span data-bind="i18n: 'Logout and further as a guest'"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
