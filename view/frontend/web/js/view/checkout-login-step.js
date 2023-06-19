@@ -23,8 +23,8 @@ define(
             },
 
             isVisible: ko.observable(true),
-            customerEmail: ko.observable(),
-            isLoggedIn: customer.isLoggedIn(),
+            customerEmail: '',
+            isLoggedIn: false,
             stepCode: 'login',
             stepTitle: 'Login',
 
@@ -42,14 +42,15 @@ define(
                     _.bind(this.navigate, this),
                     5
                 );
-                
-                if (this.isLoggedIn) {
+
+                if (customer.isLoggedIn()) {
+                    this.isLoggedIn = true;
                     this.customerEmail = customer.customerData.email;
-                }   
+                    
+                }    
 
                 return this;
             },
-
 
              /**
              * Provide login action.
@@ -70,20 +71,22 @@ define(
                         fullScreenLoader.startLoader();
                         loginAction(loginData, undefined, messageContainer).always(function () {
                             fullScreenLoader.stopLoader();
-                            stepNavigator.next();
+                            location.reload(); 
                         });
 
                         
                     }
             },
 
+            /**
+             * @returns void
+             */
             navigate: function () {
-
             },
 
             /**
-            * @returns void
-            */
+             * @returns void
+             */
             navigateToNextStep: function () {
                 stepNavigator.next();
             }
