@@ -1,12 +1,12 @@
 <li data-bind="fadeVisible: isVisible, attr: { id: stepCode }">
     <div class="step-title" data-bind="i18n: stepTitle" data-role="title"></div>
         <div id="checkout-step-login" class="checkout-step-login step-content" data-role="content">
-            <div class="authentication-wrapper" data-block="authentication">
+            <div class="authentication-wrapper" data-block="authentication" data-bind="visible: !isLoggedIn">
                 <div class="block-authentication">
                     <!-- ko foreach: getRegion('before') -->
                     <!-- ko template: getTemplate() --><!-- /ko -->
                     <!-- /ko -->
-                    <div class="block-customer-login" data-bind="visible: !isLoggedIn">
+                    <div class="block-customer-login">
                         <!-- ko foreach: getRegion('messages') -->
                         <!-- ko template: getTemplate() --><!-- /ko -->
                         <!--/ko-->
@@ -68,19 +68,23 @@
                             </form>
                         </div>
                     </div>
-                    <div class="block-customer" data-bind="visible: isLoggedIn">
-                        <span data-bind="text: customerEmail"></span>
-                        <form data-bind="submit: navigateToNextStep" novalidate="novalidate">
-                            <p data-bind="i18n: 'Complete your purchase without registration.'"></p>
-                            <div class="actions-toolbar">
-                                <div class="primary">
-                                    <button type="submit" data-role="opc-continue" class="button action continue primary">
-                                        <span data-bind="i18n: 'Logout and further as a guest'"></span>
-                                    </button>
-                                </div>
+                </div>
+            </div>
+            <div class="authenticated-wrapper" data-bind="visible: isLoggedIn">
+                <div class="block-customer">
+                    <form data-bind="submit: navigateToNextStep" novalidate="novalidate">
+                        <div class="block-content">
+                            <h3><span data-bind="i18n: 'Logged in as:'"></span></h3>
+                            <span data-bind="text: customerEmail"></span>
+                        </div>
+                        <div class="actions-toolbar">
+                            <div class="primary">
+                                <button type="submit" data-role="opc-continue" class="button action continue primary">
+                                    <span data-bind="i18n: 'Next'"></span>
+                                </button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
