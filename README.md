@@ -6,12 +6,12 @@ A simple module which enhances the checkout process by introducing a new step: L
 
 Add the following lines into your composer.json
  
- ...
+```
 "require":{
     ...
     "solution-pioneers/magento-checkout-login-step":"{version}"
  }
-
+```
 or install via composer
 
 ```
