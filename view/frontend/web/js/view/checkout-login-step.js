@@ -70,7 +70,6 @@ define(
                     ) {
                         fullScreenLoader.startLoader();
                         loginAction(loginData, undefined, messageContainer).always(function () {
-                            fullScreenLoader.stopLoader();
                             location.reload(); 
                         });
 
