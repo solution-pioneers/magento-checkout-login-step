@@ -1,7 +1,8 @@
 {
   "name": "solution-pioneers/magento-checkout-login-step",
-  "description": "Magento 2 Checkout Login Step Extension",
+  "description": "Enhances the checkout process by introducing a new step: Login",
   "require": {
+    "php": ">=8.0",
     "magento/module-checkout": "*"
   },
   "type": "magento2-module",
