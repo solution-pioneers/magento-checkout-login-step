@@ -22,6 +22,7 @@ define(
                 template: 'SolutionPioneers_CheckoutLoginStep/checkout-login-step'
             },
 
+            forgotPasswordUrl: checkoutConfig.forgotPasswordUrl,
             isVisible: ko.observable(true),
             customerEmail: '',
             isLoggedIn: false,
