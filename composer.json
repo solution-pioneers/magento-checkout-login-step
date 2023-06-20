@@ -2,7 +2,7 @@
   "name": "solution-pioneers/magento-checkout-login-step",
   "description": "Magento 2 Checkout Login Step Extension",
   "require": {
-    "magento/module-sales": "*"
+    "magento/module-checkout": "*"
   },
   "type": "magento2-module",
   "version": "1.0.0",

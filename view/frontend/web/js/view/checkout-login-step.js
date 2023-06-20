@@ -8,9 +8,21 @@ define(
         'SolutionPioneers_CheckoutLoginStep/js/action/login',
         'Magento_Customer/js/model/customer',
         'Magento_Checkout/js/model/authentication-messages',
-        'Magento_Checkout/js/model/full-screen-loader'
+        'Magento_Checkout/js/model/full-screen-loader',
+        'mage/translate'
     ],
-    function ($, ko, Component, _, stepNavigator, loginAction, customer, messageContainer, fullScreenLoader) 
+    function (
+        $, 
+        ko, 
+        Component, 
+        _, 
+        stepNavigator, 
+        loginAction, 
+        customer, 
+        messageContainer, 
+        fullScreenLoader,
+        $t
+        ) 
     {
         'use strict';
 
@@ -47,7 +59,7 @@ define(
                 if (customer.isLoggedIn()) {
                     this.isLoggedIn = true;
                     this.customerEmail = customer.customerData.email;
-                    
+                    this.stepTitle = $t('Logged in');
                 }    
 
                 return this;
