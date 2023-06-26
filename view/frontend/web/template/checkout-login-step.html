@@ -1,7 +1,15 @@
 <li data-bind="fadeVisible: isVisible, attr: { id: stepCode }">
     <div class="step-title" data-bind="i18n: stepTitle" data-role="title"></div>
         <div id="checkout-step-login" class="checkout-step-login step-content" data-role="content">
-            <div class="authentication-wrapper" data-block="authentication" data-bind="visible: !isLoggedIn">
+            <div class="step-actions">
+                <div class="step-action step-action-login" data-role="login" data-bind="click:showTab.bind($data,'login')">
+                    <span data-bind="i18n: 'Login'"></span>
+                </div>
+                <div class="step-action step-action-new" data-role="new" data-bind="click:showTab.bind($data,'new')">
+                    <span data-bind="i18n: 'New here?'"></span>
+                </div>
+            </div>
+            <div class="authentication-wrapper" data-block="authentication" data-bind="visible: isLoginTabVisible">
                 <div class="block-authentication">
                     <!-- ko foreach: getRegion('before') -->
                     <!-- ko template: getTemplate() --><!-- /ko -->
@@ -11,7 +19,6 @@
                         <!-- ko template: getTemplate() --><!-- /ko -->
                         <!--/ko-->
                         <div class="block-content" aria-labelledby="block-customer-login-heading">
-                            <h3><span data-bind="i18n: 'Already client?'"></span></h3>
                             <form data-role="login" data-bind="submit:login" method="post" novalidate="novalidate">
                                 <div class="fieldset">
                                     <div class="field field-email required">
@@ -55,8 +62,85 @@
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="registration-wrapper" data-block="registration" data-bind="visible: isNewTabVisible">
+                <div class="block-registration">
+                    <!-- ko foreach: getRegion('before') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <!-- /ko -->
+                    <div class="block-customer-registration">
+                        <!-- ko foreach: getRegion('messages') -->
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                        <!--/ko-->
+                        <div class="block-content" aria-labelledby="block-registration-heading">
+                            <form data-role="registration" data-bind="submit:registration" method="post" novalidate="novalidate">
+                                <div class="fieldset">
+                                    <div class="field field-firstname required">
+                                        <div class="control">
+                                            <input 
+                                                name="firstname" 
+                                                id="registration-firstname" 
+                                                type="text" 
+                                                class="input-text" 
+                                                data-bind="attr: {placeholder: $t('Firstname')}" 
+                                                data-validate="{required:true}" 
+                                                autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <div class="field field-lastname required">
+                                        <div class="control">
+                                            <input 
+                                                name="lastname" 
+                                                id="registration-lastname" 
+                                                type="text" 
+                                                class="input-text" 
+                                                data-bind="attr: {placeholder: $t('Lastname')}" 
+                                                data-validate="{required:true}" 
+                                                autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <div class="field field-email required">
+                                        <div class="control">
+                                            <input 
+                                                name="email" 
+                                                id="registration-email" 
+                                                type="text" 
+                                                class="input-text" 
+                                                data-bind="attr: {placeholder: $t('Email Address')}" 
+                                                data-validate="{required:true, 'validate-email':true}" 
+                                                autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <div class="field field-password required">
+                                        <div class="control">
+                                            <input 
+                                                type="password" 
+                                                class="input-text" 
+                                                id="registration-password" 
+                                                name="password" 
+                                                data-validate="{required:true}" 
+                                                data-bind="attr: {placeholder: $t('Password')}" 
+                                                autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <!-- ko foreach: getRegion('additional-registration-form-fields') -->
+                                    <!-- ko template: getTemplate() --><!-- /ko -->
+                                    <!-- /ko -->
+                                </div>
+                                <div class="actions-toolbar">
+                                    <input name="context" type="hidden" value="checkout" />
+                                    <div class="primary">
+                                        <button type="submit" class="action action-registrate primary">
+                                            <span data-bind="i18n: 'Registration'"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                             <form data-bind="submit: navigateToNextStep" novalidate="novalidate">
-                                <h3><span data-bind="i18n: 'New here?'"></span></h3>
                                 <p data-bind="i18n: 'Complete your purchase without registration. At the end of the process you can optionally create an account.'"></p>
                                 <div class="actions-toolbar">
                                     <div class="primary">
@@ -70,6 +154,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="authenticated-wrapper" data-bind="visible: isLoggedIn">
                 <div class="block-customer">
                     <form data-bind="submit: navigateToNextStep" novalidate="novalidate">

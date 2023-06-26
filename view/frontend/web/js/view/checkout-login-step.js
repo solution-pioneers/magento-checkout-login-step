@@ -36,6 +36,9 @@ define(
 
             forgotPasswordUrl: checkoutConfig.forgotPasswordUrl,
             isVisible: ko.observable(true),
+            isAuthenticationTabVisible: ko.observable(true),
+            isNewTabVisible: ko.observable(false),
+            isLoginTabVisible: ko.observable(true),
             customerEmail: '',
             isLoggedIn: false,
             stepCode: 'login',
@@ -57,7 +60,7 @@ define(
                 );
 
                 if (customer.isLoggedIn()) {
-                    this.isLoggedIn = true;
+                    this.isLoggedIn(true);
                     this.customerEmail = customer.customerData.email;
                     this.stepTitle = $t('Logged in');
                 }    
@@ -68,18 +71,18 @@ define(
              /**
              * Provide login action.
              *
-             * @param {HTMLElement} loginForm
+             * @param {HTMLElement} form
              */
-            login: function (loginForm) {
+            login: function (form) {
                 var loginData = {},
-                    formDataArray = $(loginForm).serializeArray();
+                    formDataArray = $(form).serializeArray();
 
                     formDataArray.forEach(function (entry) {
                         loginData[entry.name] = entry.value;
                     });
 
-                    if ($(loginForm).validation() &&
-                        $(loginForm).validation('isValid')
+                    if ($(form).validation() &&
+                        $(form).validation('isValid')
                     ) {
                         fullScreenLoader.startLoader();
                         loginAction(loginData, undefined, messageContainer).always(function () {
@@ -88,6 +91,29 @@ define(
 
                         
                     }
+            },
+
+            registration: function (form) {
+                var registrationData = {},
+                    formDataArray = $(form).serializeArray();
+
+                
+                formDataArray.forEach(function (entry) {
+                    registrationData[entry.name] = entry.value;
+                });
+            },
+
+            showTab: function(tab) {
+                if (tab === 'login') {
+                    this.isLoginTabVisible(true);
+                    this.isNewTabVisible(false);
+                }
+                
+                if (tab === 'new') {
+                    this.isNewTabVisible(true);
+                    this.isLoginTabVisible(false);
+                }
+
             },
 
             /**

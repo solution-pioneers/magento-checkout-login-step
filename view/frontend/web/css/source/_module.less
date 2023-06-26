@@ -1,37 +1,75 @@
 .checkout-step-login {
     float: left;
     width: 100%;
-}
 
-.opc-wrapper {
+    .step-actions {
+        display: flex;
+        margin-bottom: 20px;
 
-    .checkout-step-login {
+        .step-action {
+            width: 50%;
+            padding-right: 5px;
 
-        .authentication-wrapper {
-            float: none;
-            width: 400px;
-            max-width: 400px;
-            margin: 0 auto;
-
-            h3 {
+            span {
+                color: #fff;
+                line-height: 2.2rem;
+                text-align: center;
+                font-size: 1.8rem;
+                cursor: pointer;                
                 float: left;
+                padding: 10px 0;
+                width: 100%;
+
             }
 
-            .fieldset {
-                margin-bottom: 20px;
+            &.step-action-login {
+                padding-right: 10px;
+
+                span {
+                    background: #e4e4e4;
+                    color: #575757;
+                }
+            }
+
+            &.step-action-new {
+                padding-right: 0;
+
+                span {
+                    background: #1979c3;
+                }
             }
         }
+
     }
-}
 
 
-.checkout-step-login {
+    form {
 
-    .authentication-wrapper {
+        input[type=email] {
+            height: 45px;
+        }
 
-        form {
+        input[type=text] {
+            height: 45px;
+        }
 
-            .actions-toolbar {
+        input[type=password] {
+            height: 45px;
+        }
+
+        .fieldset {
+            margin: 0 0 20px;
+        }
+
+        .action {
+
+            &.action-login {
+                padding: 10px 0;
+            }
+
+        }
+
+         .actions-toolbar {
                 margin-bottom: 20px;
 
                 .primary {
@@ -55,9 +93,20 @@
                 }
             }
 
-        }
+    }
+
+
+    .authentication-wrapper {
+        float: left;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
 
         .block-content {
+            margin-bottom: 20px;
+            float: left;
+            display: block;
+            width: 100%;
 
             p {
                 float: left;
@@ -88,21 +137,7 @@
 
         }
 
-    }
-
-    .authenticated-wrapper {
-
-        form {
-
-            .block-content {
-                margin-bottom: 20px;
-                float: left;
-                display: block;
-                width: 100%;
-            }
-
-        }
 
     }
 
-} 
+}
