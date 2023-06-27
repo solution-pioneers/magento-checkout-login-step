@@ -6,6 +6,7 @@ define(
         'underscore',
         'Magento_Checkout/js/model/step-navigator',
         'SolutionPioneers_CheckoutLoginStep/js/action/login',
+        'SolutionPioneers_CheckoutLoginStep/js/action/register',
         'Magento_Customer/js/model/customer',
         'Magento_Checkout/js/model/authentication-messages',
         'Magento_Checkout/js/model/full-screen-loader',
@@ -18,6 +19,7 @@ define(
         _, 
         stepNavigator, 
         loginAction, 
+        registerAction,
         customer, 
         messageContainer, 
         fullScreenLoader,
@@ -92,15 +94,29 @@ define(
                         
                     }
             },
-
+            /**
+             * Provide registration action.
+             *
+             * @param {HTMLElement} form
+             */
             registration: function (form) {
                 var registrationData = {},
                     formDataArray = $(form).serializeArray();
 
-                
                 formDataArray.forEach(function (entry) {
                     registrationData[entry.name] = entry.value;
                 });
+                
+                if ($(form).validation() &&
+                        $(form).validation('isValid')
+                    ) {
+                        fullScreenLoader.startLoader();
+                        registerAction(registrationData, undefined, messageContainer).always(function () {
+                         //   location.reload(); 
+                        });
+
+                        
+                }
             },
 
             showTab: function(tab) {

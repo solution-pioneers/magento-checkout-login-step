@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Solution Pioneers
+ *
+ * @category    SolutionPioneers
+ * @package     SolutionPioneers_CheckoutLoginStep
+ * @copyright   Copyright (c) Solution Pioneers (https://www.solution-pioneers.com/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="sp_checkoutloginstep" frontName="sp_checkoutloginstep">
+            <module name="SolutionPioneers_CheckoutLoginStep"/>
+        </route>
+    </router>
+</config>

@@ -6,7 +6,7 @@
                     <span data-bind="i18n: 'Login'"></span>
                 </div>
                 <div class="step-action step-action-new" data-role="new" data-bind="click:showTab.bind($data,'new')">
-                    <span data-bind="i18n: 'New here?'"></span>
+                    <span data-bind="i18n: 'New here ?'"></span>
                 </div>
             </div>
             <div class="authentication-wrapper" data-block="authentication" data-bind="visible: isLoginTabVisible">
@@ -124,6 +124,18 @@
                                                 name="password" 
                                                 data-validate="{required:true}" 
                                                 data-bind="attr: {placeholder: $t('Password')}" 
+                                                autocomplete="off"/>
+                                        </div>
+                                    </div>
+                                    <div class="field field-confirm-password required">
+                                        <div class="control">
+                                            <input 
+                                                type="password" 
+                                                class="input-text" 
+                                                id="registration-confirm-password" 
+                                                name="confirm_password" 
+                                                data-validate="{required:true}" 
+                                                data-bind="attr: {placeholder: $t('Confirm Password')}" 
                                                 autocomplete="off"/>
                                         </div>
                                     </div>
