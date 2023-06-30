@@ -87,11 +87,8 @@ define(
                         $(form).validation('isValid')
                     ) {
                         fullScreenLoader.startLoader();
-                        loginAction(loginData, undefined, messageContainer).always(function () {
-                            location.reload(); 
+                            loginAction(loginData, undefined, messageContainer).always(function () {
                         });
-
-                        
                     }
             },
             /**
@@ -112,10 +109,7 @@ define(
                     ) {
                         fullScreenLoader.startLoader();
                         registerAction(registrationData, undefined, messageContainer).always(function () {
-                         //   location.reload(); 
-                        });
-
-                        
+                        });       
                 }
             },
 

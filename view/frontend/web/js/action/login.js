@@ -3,8 +3,16 @@ define([
     'mage/storage',
     'Magento_Ui/js/model/messageList',
     'Magento_Customer/js/customer-data',
+    'Magento_Checkout/js/model/full-screen-loader',
     'mage/translate'
-], function ($, storage, globalMessageList, customerData, $t) {
+], function (
+    $, 
+    storage, 
+    globalMessageList, 
+    customerData, 
+    fullScreenLoader,
+    $t
+    ) {
     'use strict';
 
     var callbacks = [],
@@ -28,6 +36,7 @@ define([
                 JSON.stringify(loginData),
                 isGlobal
             ).done(function (response) {
+                fullScreenLoader.stopLoader();
                 if (response.errors) {
                     messageContainer.addErrorMessage(response);
                     callbacks.forEach(function (callback) {
@@ -38,8 +47,10 @@ define([
                         callback(loginData);
                     });
                     customerData.invalidate(['customer']);
+                    location.reload(); 
                 }
             }).fail(function () {
+                fullScreenLoader.stopLoader();
                 messageContainer.addErrorMessage({
                     'message': $t('Could not authenticate. Please try again later')
                 });
