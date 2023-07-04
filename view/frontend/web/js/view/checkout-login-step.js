@@ -45,6 +45,7 @@ define(
             isLoggedIn: false,
             stepCode: 'login',
             stepTitle: 'Login',
+            agreementCheckboxText: checkoutConfig.checkbox_text,
 
             /**
             *
@@ -66,6 +67,8 @@ define(
                     this.customerEmail = customer.customerData.email;
                     this.stepTitle = $t('Logged in');
                 }    
+
+                console.log(this.agreementCheckboxText);
 
                 return this;
             },

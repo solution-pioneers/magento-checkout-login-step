@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Solution Pioneers
+ *
+ * @category    SolutionPioneers
+ * @package     SolutionPioneers_CheckoutLoginStep
+ * @copyright   Copyright (c) Solution Pioneers (https://www.solution-pioneers.com/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">    
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="solutionpioneers_checkoutloginstep_configprovider" xsi:type="object">SolutionPioneers\CheckoutLoginStep\Model\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

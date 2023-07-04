@@ -143,6 +143,18 @@
                                     <!-- ko template: getTemplate() --><!-- /ko -->
                                     <!-- /ko -->
                                 </div>
+                                <div class="field agreement required">
+                                    <div class="control">
+                                        <input 
+                                            type="checkbox" 
+                                            class="input-checkbox checkbox"
+                                            id="agreement" 
+                                            name="agreement" 
+                                            data-validate="{required:true}" 
+                                            value="1">
+                                            <label for="agreement" class="label"><span data-bind="html: agreementCheckboxText"></span></label>
+                                    </div>
+                                </div>
                                 <div class="actions-toolbar">
                                     <input name="context" type="hidden" value="checkout" />
                                     <div class="primary">

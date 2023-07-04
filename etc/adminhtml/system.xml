@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Solution Pioneers
+ *
+ * @category    SolutionPioneers
+ * @package     SolutionPioneers_CheckoutLoginStep
+ * @copyright   Copyright (c) Solution Pioneers (https://www.solution-pioneers.com/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="solutionpioneers" sortOrder="100" translate="label">
+            <label>Solution Pioneers</label>
+        </tab>
+        <section id="solutionpioneers_checkout_login_step" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Solution Pioneers CheckoutLoginStep</label>
+            <tab>solutionpioneers</tab>
+            <resource>SolutionPioneers_CheckoutLoginStep::config</resource>
+            <group id="settings" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Settings</label>
+                <field id="enabled" type="select" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="agreement" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                 <label>Agreement</label>
+                 <field id="checkbox_text" type="textarea" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Checkbox Text</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
