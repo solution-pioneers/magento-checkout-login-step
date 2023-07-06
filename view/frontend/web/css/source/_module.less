@@ -60,41 +60,53 @@
         .fieldset {
             margin: 0 0 20px;
         }
+        
+        button {
 
-        .action {
-
-            &.action-login {
+            span {
+                line-height: 2.2rem;
+                text-align: center;
+                font-size: 1.8rem;
+                cursor: pointer;
+                float: left;
                 padding: 10px 0;
+                width: 100%;
             }
-
         }
 
-         .actions-toolbar {
-                margin-bottom: 20px;
+        .actions-toolbar {
+            margin-bottom: 20px;
 
-                .primary {
-                    float: left;
-                    width: 100%;
+            .primary {
+                float: left;
+                width: 100%;
+            }
+
+            .action {
+
+                &.primary {
+                    padding: 0;
                 }
 
-                .secondary {
+            }
+            
+            .secondary {
+                float: left;
+                width: 100%;
+
+                .action {
                     float: left;
-                    width: 100%;
-
-                    .action {
-                        float: left;
-                        margin: 0;
-                        line-height: 35px;
-                    }
-                }
-
-                .button {
-                    width: 100%;
+                    margin: 0;
+                    line-height: 35px;
                 }
             }
 
-    }
+            .button {
+                width: 100%;
+            }
+        }
 
+    }
 
     .authentication-wrapper {
         float: left;
@@ -121,22 +133,73 @@
             text-align: left;
         }
 
-        .mage-error {
-            line-height: 20px;
-            text-align: left;
-        }
+        .block-authentication {
 
-        .messages {
+            .action {
 
-            .message-error {
-                text-align: left;
-                margin: 0;
-                padding: 0px 0px 0px 40px;
-                line-height: 44px;
+                &.action-login {
+                    padding: 0;
+                }
+
             }
 
         }
 
+    }
+
+    .form-create-account {
+        float: left;
+        margin-bottom: 20px;
+
+        .field {
+
+            &.agreement {
+                margin-bottom: 20px;
+                position: relative;
+
+                .control {
+                    display: flex;
+                    align-items: flex-start;
+
+                    .mage-error {
+                        position: absolute;
+                        bottom: -10px;
+                    }
+
+                    .input-checkbox {
+
+                        &.mage-error {
+                            position: relative;
+                        }
+
+                    } 
+                }
+
+            }
+
+        }
+
+        .form__text-required-fields {
+            text-align: right;
+            font-size: 10px;
+            color: #d0043c;
+        }
+
+    }
+
+    .mage-error {
+        line-height: 20px;
+        text-align: left;
+    }
+
+    .messages {
+
+        .message-error {
+            text-align: left;
+            margin: 0;
+            padding: 0px 0px 0px 40px;
+            line-height: 44px;
+        }
 
     }
 

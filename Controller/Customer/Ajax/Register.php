@@ -96,6 +96,7 @@ class Register extends Action
      * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
      * @param \Magento\Customer\Model\CustomerFactory $customerFactory
      * @param \Magento\Customer\Model\CustomerExtractor $customerExtractor
+     * @param \Magento\Customer\Model\Url $customerUrl
      * 
      */
     public function __construct (
@@ -149,6 +150,8 @@ class Register extends Action
                 'errors' => true,
                 'message' => __('Customer registration is already disabled.')
             ];
+
+            return $resultJson->setData($response);
         }
 
         $this->session->regenerateId();
@@ -162,7 +165,14 @@ class Register extends Action
             $password = $this->getRequest()->getParam('password');
             $confirmation = $this->getRequest()->getParam('password_confirmation');
 
-            $this->checkPasswordConfirmation($password, $confirmation);
+            if ($password != $confirmation) {
+                $response = [
+                    'errors' => true,
+                    'message' => $this->escaper->escapeHtml(__($e->getMessage()))
+                ];
+
+                return $resultJson->setData($response);
+            }
 
             $extensionAttributes = $customer->getExtensionAttributes();
             $extensionAttributes->setIsSubscribed($this->getRequest()->getParam('is_subscribed', false));
@@ -177,6 +187,7 @@ class Register extends Action
 
 
             $confirmationStatus = $this->accountManagement->getConfirmationStatus($customer->getId());
+
             if ($confirmationStatus === AccountManagementInterface::ACCOUNT_CONFIRMATION_REQUIRED) {
                 $email = $this->customerUrl->getEmailConfirmationUrl($customer->getEmail());
                 $response = [
@@ -193,6 +204,7 @@ class Register extends Action
                     'message' => $this->getSuccessMessage()
                 ];
             }
+
             if ($this->getCookieManager()->getCookie('mage-cache-sessid')) {
                 $metadata = $this->getCookieMetadataFactory()->createCookieMetadata();
                 $metadata->setPath('/');

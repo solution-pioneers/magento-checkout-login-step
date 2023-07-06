@@ -86,7 +86,7 @@
                                                 id="registration-firstname" 
                                                 type="text" 
                                                 class="input-text" 
-                                                data-bind="attr: {placeholder: $t('Firstname')}" 
+                                                data-bind="attr: {placeholder: $t('Firstname *')}" 
                                                 data-validate="{required:true}" 
                                                 autocomplete="off"/>
                                         </div>
@@ -98,7 +98,7 @@
                                                 id="registration-lastname" 
                                                 type="text" 
                                                 class="input-text" 
-                                                data-bind="attr: {placeholder: $t('Lastname')}" 
+                                                data-bind="attr: {placeholder: $t('Lastname *')}" 
                                                 data-validate="{required:true}" 
                                                 autocomplete="off"/>
                                         </div>
@@ -110,7 +110,7 @@
                                                 id="registration-email" 
                                                 type="text" 
                                                 class="input-text" 
-                                                data-bind="attr: {placeholder: $t('Email Address')}" 
+                                                data-bind="attr: {placeholder: $t('Email Address *')}" 
                                                 data-validate="{required:true, 'validate-email':true}" 
                                                 autocomplete="off"/>
                                         </div>
@@ -123,7 +123,7 @@
                                                 id="registration-password" 
                                                 name="password" 
                                                 data-validate="{required:true}" 
-                                                data-bind="attr: {placeholder: $t('Password')}" 
+                                                data-bind="attr: {placeholder: $t('Password *')}" 
                                                 autocomplete="off"/>
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@
                                                 id="registration-confirm-password" 
                                                 name="password_confirmation" 
                                                 data-validate="{required:true}" 
-                                                data-bind="attr: {placeholder: $t('Confirm Password')}" 
+                                                data-bind="attr: {placeholder: $t('Confirm Password *')}" 
                                                 autocomplete="off"/>
                                         </div>
                                     </div>
@@ -143,6 +143,7 @@
                                     <!-- ko template: getTemplate() --><!-- /ko -->
                                     <!-- /ko -->
                                 </div>
+                                <p class="form__text-required-fields" data-bind="i18n: '* The fields marked with an asterisk (*) are mandatory.'"></p>
                                 <div class="field agreement required">
                                     <div class="control">
                                         <input 
@@ -159,7 +160,7 @@
                                     <input name="context" type="hidden" value="checkout" />
                                     <div class="primary">
                                         <button type="submit" class="action action-registrate primary">
-                                            <span data-bind="i18n: 'Registration'"></span>
+                                            <span data-bind="i18n: 'Create an Account'"></span>
                                         </button>
                                     </div>
                                 </div>
@@ -169,7 +170,7 @@
                                 <div class="actions-toolbar">
                                     <div class="primary">
                                         <button type="submit" data-role="opc-continue" class="button action continue primary">
-                                            <span data-bind="i18n: 'Further as a guest'"></span>
+                                            <span data-bind="i18n: 'Continue without registration'"></span>
                                         </button>
                                     </div>
                                 </div>

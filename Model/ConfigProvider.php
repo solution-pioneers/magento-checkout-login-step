@@ -8,6 +8,7 @@ use Magento\Store\Model\ScopeInterface;
 class ConfigProvider implements ConfigProviderInterface
 {
     const XML_PATH_CHECKBOX_TEXT = 'solutionpioneers_checkout_login_step/agreement/checkbox_text';
+    const XML_PATH_ENABLED_AGREEMENT = 'solutionpioneers_checkout_login_step/agreement/enabled_agreement';
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface

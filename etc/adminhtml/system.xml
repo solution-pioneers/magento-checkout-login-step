@@ -26,11 +26,15 @@
             </group>
             <group id="agreement" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                  <label>Agreement</label>
+                 <field id="enabled_agreement" type="select" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
                  <field id="checkbox_text" type="textarea" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Checkbox Text</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
-                        <field id="enabled">1</field>
+                        <field id="enabled_agreement">1</field>
                     </depends>
                 </field>
             </group>
