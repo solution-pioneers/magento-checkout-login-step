@@ -2,14 +2,12 @@ define([
     'jquery',
     'mage/storage',
     'Magento_Ui/js/model/messageList',
-    'Magento_Customer/js/customer-data',
     'Magento_Checkout/js/model/full-screen-loader',
     'mage/translate'
 ], function (
     $, 
     storage, 
     globalMessageList, 
-    customerData, 
     fullScreenLoader,
     $t
     ) {
@@ -42,7 +40,6 @@ define([
                     callbacks.forEach(function (callback) {
                         callback(registerData);
                     });
-                    //registerData.invalidate(['customer']);
                 }
             }).fail(function () {
                 fullScreenLoader.stopLoader();

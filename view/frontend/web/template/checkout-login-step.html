@@ -78,6 +78,7 @@
                         <!--/ko-->
                         <div class="block-content" aria-labelledby="block-registration-heading">
                             <form class="form-create-account" data-role="registration" data-bind="submit:registration" method="post" novalidate="novalidate">
+                                <input data-bind='attr: {value: getFormKey()}' type="hidden" name="form_key"/>
                                 <div class="fieldset">
                                     <div class="field field-firstname required">
                                         <div class="control">
@@ -144,7 +145,7 @@
                                     <!-- /ko -->
                                 </div>
                                 <p class="form__text-required-fields" data-bind="i18n: '* The fields marked with an asterisk (*) are mandatory.'"></p>
-                                <div class="field agreement required">
+                                <div class="field agreement required" data-bind="visible: isAgreementEnabled">
                                     <div class="control">
                                         <input 
                                             type="checkbox" 

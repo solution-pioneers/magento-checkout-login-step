@@ -28,9 +28,11 @@ class ConfigProvider implements ConfigProviderInterface
      */
     public function getConfig()
     {
-        $config['checkbox_text'] = $this->scopeConfig
-            ->getValue(self::XML_PATH_CHECKBOX_TEXT, ScopeInterface::SCOPE_STORE);
-                     
-        return $config;
+        return [
+            'agreement_enabled' => $this->scopeConfig
+                ->getValue(self::XML_PATH_ENABLED_AGREEMENT, ScopeInterface::SCOPE_STORE),
+            'agreement_checkbox_text' => $this->scopeConfig
+                ->getValue(self::XML_PATH_CHECKBOX_TEXT, ScopeInterface::SCOPE_STORE)
+        ];
     }
 }

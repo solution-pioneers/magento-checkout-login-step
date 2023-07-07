@@ -10,6 +10,7 @@
 namespace SolutionPioneers\CheckoutLoginStep\Controller\Customer\Ajax;
 
 use Magento\Customer\Api\AccountManagementInterface;
+use Magento\Framework\Data\Form\FormKey\Validator as FormKeyValidator;
 use Magento\Customer\Model\CustomerExtractor;
 use Magento\Customer\Model\CustomerFactory;
 use Magento\Customer\Model\Registration;
@@ -62,6 +63,11 @@ class Register extends Action
     protected $escaper;
 
     /**
+     * @var \Magento\Framework\Data\Form\FormKey\Validator
+     */
+    protected $formKeyValidator;
+
+    /**
      * @var \Magento\Framework\Json\Helper\Data
      */
     protected $helper;
@@ -97,6 +103,13 @@ class Register extends Action
      * @param \Magento\Customer\Model\CustomerFactory $customerFactory
      * @param \Magento\Customer\Model\CustomerExtractor $customerExtractor
      * @param \Magento\Customer\Model\Url $customerUrl
+     * @param \Magento\Customer\Api\AccountManagementInterface $accountManagement
+     * @param \Magento\Customer\Model\Session $customerSession
+     * @param \Magento\Customer\Model\Registration $registration
+     * @param \Magento\Framework\UrlInterface $urlModel
+     * @param \Magento\Framework\Escaper $escaper
+     * @param \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator
+     * @param \Magento\Framework\Json\Helper\Data $helper
      * 
      */
     public function __construct (
@@ -111,6 +124,7 @@ class Register extends Action
         Registration $registration,
         UrlInterface $urlModel,
         Escaper $escaper,
+        FormKeyValidator $formKeyValidator,
         JsonHelper $helper,
     ) {
         $this->accountManagement = $accountManagement;
@@ -118,6 +132,7 @@ class Register extends Action
         $this->customerExtractor = $customerExtractor;
         $this->customerUrl = $customerUrl;
         $this->escaper = $escaper;
+        $this->formKeyValidator = $formKeyValidator;
         $this->helper = $helper;
         $this->session = $customerSession;
         $this->storeManager = $storeManager;
@@ -137,6 +152,8 @@ class Register extends Action
     {
         /** @var \Magento\Framework\Controller\Result\Json $resultJson */
         $resultJson = $this->resultJsonFactory->create();
+
+        $formKeyValidation = $this->formKeyValidator->validate($this->getRequest());
 
         if ($this->session->isLoggedIn()) {
             $response = [

@@ -45,7 +45,8 @@ define(
             isLoggedIn: false,
             stepCode: 'login',
             stepTitle: 'Login',
-            agreementCheckboxText: checkoutConfig.checkbox_text,
+            isAgreementEnabled: checkoutConfig.agreement_enabled,
+            agreementCheckboxText: checkoutConfig.agreement_checkbox_text,
 
             /**
             *
@@ -68,9 +69,11 @@ define(
                     this.stepTitle = $t('Logged in');
                 }    
 
-                console.log(this.agreementCheckboxText);
-
                 return this;
+            },
+
+            getFormKey: function () {
+                return window.checkoutConfig.formKey;
             },
 
              /**
@@ -111,8 +114,7 @@ define(
                         $(form).validation('isValid')
                     ) {
                         fullScreenLoader.startLoader();
-                        registerAction(registrationData, undefined, messageContainer).always(function () {
-                        });       
+                        registerAction(registrationData, undefined, messageContainer).always(function () {});       
                 }
             },
 
