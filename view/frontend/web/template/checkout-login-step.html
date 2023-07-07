@@ -77,7 +77,7 @@
                         <!-- ko template: getTemplate() --><!-- /ko -->
                         <!--/ko-->
                         <div class="block-content" aria-labelledby="block-registration-heading">
-                            <form class="form-create-account" data-role="registration" data-bind="submit:registration" method="post" novalidate="novalidate">
+                            <form id="form-create-account" class="form-create-account" data-role="registration" data-bind="submit:registration" method="post" novalidate="novalidate">
                                 <input data-bind='attr: {value: getFormKey()}' type="hidden" name="form_key"/>
                                 <div class="fieldset">
                                     <div class="field field-firstname required">

@@ -16,11 +16,12 @@ define([
     var callbacks = [],
 
         /**
+         * @param {Object} form
          * @param {Object} registerData
          * @param {*} isGlobal
          * @param {Object} messageContainer
          */
-        action = function (registerData, isGlobal, messageContainer) {
+        action = function (form, registerData, isGlobal, messageContainer) {
             messageContainer = messageContainer || globalMessageList;
             let customerRegistrationUrl = 'sp_checkoutloginstep/customer_ajax/register';
             
@@ -40,6 +41,7 @@ define([
                     callbacks.forEach(function (callback) {
                         callback(registerData);
                     });
+                    form.reset();
                 }
             }).fail(function () {
                 fullScreenLoader.stopLoader();

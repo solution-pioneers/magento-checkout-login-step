@@ -25,3 +25,13 @@ $ composer update
 $ bin/magento setup:upgrade
 $ bin/magento setup:static-content:deploy
 ```
+
+# Snapshot
+
+## Customer login form
+
+![ScreenShot](https://raw.githubusercontent.com/solution-pioneers/magento-checkout-login-step/master/Snapshot/login-form.png)
+
+## Customer registration form
+
+![ScreenShot](https://raw.githubusercontent.com/solution-pioneers/magento-checkout-login-step/master/Snapshot/registration-form.png)

@@ -185,7 +185,7 @@ class Register extends Action
             if ($password != $confirmation) {
                 $response = [
                     'errors' => true,
-                    'message' => $this->escaper->escapeHtml(__($e->getMessage()))
+                    'message' => __('Please make sure your passwords match.')
                 ];
 
                 return $resultJson->setData($response);
@@ -207,10 +207,11 @@ class Register extends Action
 
             if ($confirmationStatus === AccountManagementInterface::ACCOUNT_CONFIRMATION_REQUIRED) {
                 $email = $this->customerUrl->getEmailConfirmationUrl($customer->getEmail());
+
                 $response = [
                     'errors' => false,
                     'message' => __(
-                        'You must confirm your account. Please check your email for the confirmation link or <a href="%1">click here</a> for a new link.',
+                        'You must confirm your account. Please check your email for the confirmation link.',
                         $email
                     )
                 ];
