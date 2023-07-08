@@ -38,11 +38,11 @@ define(
 
             forgotPasswordUrl: checkoutConfig.forgotPasswordUrl,
             isVisible: ko.observable(true),
-            isAuthenticationTabVisible: ko.observable(true),
             isNewTabVisible: ko.observable(false),
             isLoginTabVisible: ko.observable(true),
             customerEmail: '',
-            isLoggedIn: false,
+            isLoggedIn: ko.observable(false),
+            isGuest: ko.observable(true),
             stepCode: 'login',
             stepTitle: 'Login',
             isAgreementEnabled: checkoutConfig.agreement_enabled,
@@ -64,7 +64,10 @@ define(
                 );
 
                 if (customer.isLoggedIn()) {
+                    this.isGuest(false);
                     this.isLoggedIn(true);
+                    this.isNewTabVisible(false);
+                    this.isLoginTabVisible(false);
                     this.customerEmail = customer.customerData.email;
                     this.stepTitle = $t('Logged in');
                 }    
@@ -113,7 +116,9 @@ define(
                         $(form).validation('isValid')
                     ) {
                         fullScreenLoader.startLoader();
-                        registerAction(form, registrationData, undefined, messageContainer).always(function () {});       
+                        registerAction(form, registrationData, undefined, messageContainer).always(function () {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        });       
                 }
             },
 

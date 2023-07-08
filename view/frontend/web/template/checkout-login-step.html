@@ -1,7 +1,7 @@
 <li data-bind="fadeVisible: isVisible, attr: { id: stepCode }">
     <div class="step-title" data-bind="i18n: stepTitle" data-role="title"></div>
         <div id="checkout-step-login" class="checkout-step-login step-content" data-role="content">
-            <div class="step-actions">
+            <div class="step-actions" data-bind="visible: isGuest">
                 <div class="step-action step-action-login" data-role="login" data-bind="click:showTab.bind($data,'login')">
                     <span data-bind="i18n: 'Login'"></span>
                 </div>
