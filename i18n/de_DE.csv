@@ -7,3 +7,8 @@
 "Logout and further as a guest","Abmelden und weiter als Gast"
 "Logged in as:","Eingeloggt als:"
 "Logged in", "Eingeloggt"
+"Firstname *","Vorname *"
+"Lastname *","Nachname *"
+"Email Address *","E-Mail-Addresse *"
+"Password *","Passwort *"
+"Confirm Password *","Bestätige das Passwort *"
