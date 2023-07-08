@@ -104,6 +104,7 @@
 
             .button {
                 width: 100%;
+                height: auto;
             }
         }
 
@@ -169,23 +170,32 @@
             &.agreement {
                 margin-bottom: 20px;
                 position: relative;
+                float: left;
 
                 .control {
-                    display: flex;
-                    align-items: flex-start;
-
+                    display: block;
+                    float: left;
+                    
                     .mage-error {
                         position: absolute;
                         bottom: -10px;
                     }
 
                     .input-checkbox {
+                        display: block;
+                        float: left;
 
                         &.mage-error {
                             position: relative;
                         }
-
+                      
                     } 
+
+                    label {
+                        display: block;
+                        float: left;
+                        width: 90%;
+                    }
                 }
 
             }
