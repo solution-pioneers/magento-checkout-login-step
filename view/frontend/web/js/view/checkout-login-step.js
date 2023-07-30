@@ -38,8 +38,8 @@ define(
 
             forgotPasswordUrl: checkoutConfig.forgotPasswordUrl,
             isVisible: ko.observable(true),
-            isNewTabVisible: ko.observable(false),
-            isLoginTabVisible: ko.observable(true),
+            isRegisterActionVisible: ko.observable(false),
+            isLoginActionVisible: ko.observable(true),
             customerEmail: '',
             isLoggedIn: ko.observable(false),
             isGuest: ko.observable(true),
@@ -66,8 +66,8 @@ define(
                 if (customer.isLoggedIn()) {
                     this.isGuest(false);
                     this.isLoggedIn(true);
-                    this.isNewTabVisible(false);
-                    this.isLoginTabVisible(false);
+                    this.isRegisterActionVisible(false);
+                    this.isLoginActionVisible(false);
                     this.customerEmail = customer.customerData.email;
                     this.stepTitle = $t('Logged in');
                 }    
@@ -122,15 +122,15 @@ define(
                 }
             },
 
-            showTab: function(tab) {
-                if (tab === 'login') {
-                    this.isLoginTabVisible(true);
-                    this.isNewTabVisible(false);
+            showAction: function(action) {
+                if (action === 'login') {
+                    this.isLoginActionVisible(true);
+                    this.isRegisterActionVisible(false);
                 }
                 
-                if (tab === 'new') {
-                    this.isNewTabVisible(true);
-                    this.isLoginTabVisible(false);
+                if (action === 'register') {
+                    this.isRegisterActionVisible(true);
+                    this.isLoginActionVisible(false);
                 }
 
             },

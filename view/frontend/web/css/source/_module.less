@@ -2,9 +2,14 @@
     float: left;
     width: 100%;
 
+    h4 {
+        font-size: 20px;
+    }
+
     .step-actions {
-        display: flex;
+        margin: 0 auto;
         margin-bottom: 20px;
+        text-align: left;
 
         .step-action {
             width: 50%;
@@ -61,27 +66,28 @@
         .fieldset {
             margin: 0 0 20px;
         }
-        
-        button {
+    }
 
-            span {
-                line-height: 1.8rem;
-                text-align: center;
-                font-size: 1.8rem;
-                cursor: pointer;
-                float: left;
-                padding: 10px 0;
-                width: 100%;
-            }
+    .button {
+        width: 100%;
+
+        span {
+            line-height: 1.8rem;
+            text-align: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            float: left;
+            padding: 10px 0;
+            width: 100%;
         }
+    }
 
-        .actions-toolbar {
-            margin-bottom: 20px;
+    .actions-toolbar {
+        margin-bottom: 20px;
 
-            .primary {
-                float: left;
-                width: 100%;
-            }
+        .primary {
+            float: left;
+            width: 100%;
 
             .action {
 
@@ -89,35 +95,39 @@
                     padding: 0;
                 }
 
-            }
-            
-            .secondary {
-                float: left;
-                width: 100%;
-
-                .action {
-                    float: left;
-                    margin: 0;
-                    line-height: 35px;
+                &.button {
+                    width: 100%;
                 }
+    
             }
+        }
+        
+        .secondary {
+            float: left;
+            width: 100%;
 
-            .button {
-                width: 100%;
-                height: auto;
+            .action {
+                float: left;
+                margin: 0;
+                line-height: 35px;
             }
         }
 
+        .button {
+            width: 100%;
+            height: auto;
+        }
     }
 
     .authentication-wrapper {
         float: left;
+        text-align: left;
         width: 100%;
         max-width: 100%;
         margin: 0 auto;
 
         .block-content {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             float: left;
             display: block;
             width: 100%;
@@ -147,6 +157,29 @@
 
         }
 
+        .block-customer-registration {
+            float: left;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 10px;
+
+            .actions-toolbar {
+
+                .primary {
+                    width: 100%;
+                }
+            }
+        }
+
+        .block-guest {
+            float: left;
+            width: 100%;
+
+            .form-continue-guest {
+                text-align: left;
+            }
+        }
+
     }
 
     .authenticated-wrapper {
@@ -161,7 +194,19 @@
 
     }
 
-    .form-create-account {
+    .form-customer-login {
+
+        .actions-toolbar {
+
+            .secondary {
+                margin-bottom: 10px;
+            }
+
+        }
+
+    }
+
+    .form-customer-register {
         float: left;
         margin-bottom: 20px;
 
@@ -194,7 +239,6 @@
                     label {
                         display: block;
                         float: left;
-                        width: 90%;
                     }
                 }
 
@@ -206,6 +250,21 @@
             text-align: right;
             font-size: 10px;
             color: #d0043c;
+        }
+
+        .actions-toolbar {
+
+            .primary {
+                margin-bottom: 10px;
+            }
+
+            .secondary {
+
+                .action-back {
+                    width: 100%;
+                    text-align: center;
+                }
+            }
         }
 
     }

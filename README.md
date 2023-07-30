@@ -28,10 +28,10 @@ $ bin/magento setup:static-content:deploy
 
 # Snapshot
 
-## Customer login form
+## Customer login action
 
-![ScreenShot](https://raw.githubusercontent.com/solution-pioneers/magento-checkout-login-step/master/Snapshot/login-form.png)
+![ScreenShot](https://raw.githubusercontent.com/solution-pioneers/magento-checkout-login-step/master/Snapshot/login-action.png)
 
-## Customer registration form
+## Customer registration action
 
-![ScreenShot](https://raw.githubusercontent.com/solution-pioneers/magento-checkout-login-step/master/Snapshot/registration-form.png)
+![ScreenShot](https://raw.githubusercontent.com/solution-pioneers/magento-checkout-login-step/master/Snapshot/registration-action.png)

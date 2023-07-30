@@ -2,14 +2,7 @@
     <div class="step-title" data-bind="i18n: stepTitle" data-role="title"></div>
         <div id="checkout-step-login" class="checkout-step-login step-content" data-role="content">
             <div class="step-actions" data-bind="visible: isGuest">
-                <div class="step-action step-action-login" data-role="login" data-bind="click:showTab.bind($data,'login')">
-                    <span data-bind="i18n: 'Login'"></span>
-                </div>
-                <div class="step-action step-action-new" data-role="new" data-bind="click:showTab.bind($data,'new')">
-                    <span data-bind="i18n: 'New here ?'"></span>
-                </div>
-            </div>
-            <div class="authentication-wrapper" data-block="authentication" data-bind="visible: isLoginTabVisible">
+            <div class="authentication-wrapper" data-block="authentication" data-bind="visible: isLoginActionVisible">
                 <div class="block-authentication">
                     <!-- ko foreach: getRegion('before') -->
                     <!-- ko template: getTemplate() --><!-- /ko -->
@@ -18,8 +11,9 @@
                         <!-- ko foreach: getRegion('messages') -->
                         <!-- ko template: getTemplate() --><!-- /ko -->
                         <!--/ko-->
-                        <div class="block-content" aria-labelledby="block-customer-login-heading">
-                            <form data-role="login" data-bind="submit:login" method="post" novalidate="novalidate">
+                        <div class="block-content">
+                            <form data-role="login" class="form-customer-login" data-bind="submit:login" method="post" novalidate="novalidate">
+                                <h4 data-bind="i18n: 'Already client?'"></h4>
                                 <div class="fieldset">
                                     <div class="field field-email required">
                                         <div class="control">
@@ -56,18 +50,42 @@
                                         </a>
                                     </div>
                                     <div class="primary">
-                                        <button type="submit" class="action action-login primary">
-                                            <span data-bind="i18n: 'Sign In'"></span>
+                                        <button type="submit" class="button action action-login primary">
+                                            <span data-bind="i18n: 'Sign in'"></span>
                                         </button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
+                    <div class="block-customer-registration">
+                        <h4 data-bind="i18n: 'Register'"></h4>
+                        <p data-bind="i18n: 'You do not have a customer account yet?'"></p>
+                        <div class="actions-toolbar">
+                            <div class="primary">
+                                <a class="button action continue primary" data-bind="click:showAction.bind($data,'register')">
+                                    <span data-bind="i18n: 'Create an account'"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-guest">
+                        <form class="form-continue-guest" data-bind="submit: navigateToNextStep" novalidate="novalidate">
+                            <h4 data-bind="i18n: 'Order as a Guest'"></h4>
+                            <p data-bind="i18n: 'Do not have a customer account? Just complete the purchase as a guest.'"></p>
+                            <div class="actions-toolbar">
+                                <div class="primary">
+                                    <button type="submit" data-role="opc-continue" class="button action continue primary">
+                                        <span data-bind="i18n: 'Continue as a guest'"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
 
-            <div class="registration-wrapper" data-block="registration" data-bind="visible: isNewTabVisible">
+            <div class="registration-wrapper" data-block="registration" data-bind="visible: isRegisterActionVisible">
                 <div class="block-registration">
                     <!-- ko foreach: getRegion('before') -->
                     <!-- ko template: getTemplate() --><!-- /ko -->
@@ -76,106 +94,103 @@
                         <!-- ko foreach: getRegion('messages') -->
                         <!-- ko template: getTemplate() --><!-- /ko -->
                         <!--/ko-->
-                        <div class="block-content" aria-labelledby="block-registration-heading">
-                            <form id="form-create-account" class="form-create-account" data-role="registration" data-bind="submit:registration" method="post" novalidate="novalidate">
-                                <input data-bind='attr: {value: getFormKey()}' type="hidden" name="form_key"/>
-                                <div class="fieldset">
-                                    <div class="field field-firstname required">
+                        <div class="block-content">
+                            <div class="block-registration">
+                                <form id="form-customer-register" class="form-customer-register" data-role="registration" data-bind="submit:registration" method="post" novalidate="novalidate">
+                                    <input data-bind='attr: {value: getFormKey()}' type="hidden" name="form_key"/>
+                                    <div class="fieldset">
+                                        <div class="field field-firstname required">
+                                            <div class="control">
+                                                <input 
+                                                    name="firstname" 
+                                                    id="registration-firstname" 
+                                                    type="text" 
+                                                    class="input-text" 
+                                                    data-bind="attr: {placeholder: $t('Firstname *')}" 
+                                                    data-validate="{required:true}" 
+                                                    autocomplete="off"/>
+                                            </div>
+                                        </div>
+                                        <div class="field field-lastname required">
+                                            <div class="control">
+                                                <input 
+                                                    name="lastname" 
+                                                    id="registration-lastname" 
+                                                    type="text" 
+                                                    class="input-text" 
+                                                    data-bind="attr: {placeholder: $t('Lastname *')}" 
+                                                    data-validate="{required:true}" 
+                                                    autocomplete="off"/>
+                                            </div>
+                                        </div>
+                                        <div class="field field-email required">
+                                            <div class="control">
+                                                <input 
+                                                    name="email" 
+                                                    id="registration-email" 
+                                                    type="text" 
+                                                    class="input-text" 
+                                                    data-bind="attr: {placeholder: $t('Email Address *')}" 
+                                                    data-validate="{required:true, 'validate-email':true}" 
+                                                    autocomplete="off"/>
+                                            </div>
+                                        </div>
+                                        <div class="field field-password required">
+                                            <div class="control">
+                                                <input 
+                                                    type="password" 
+                                                    class="input-text" 
+                                                    id="registration-password" 
+                                                    name="password" 
+                                                    data-validate="{required:true}" 
+                                                    data-bind="attr: {placeholder: $t('Password *')}" 
+                                                    autocomplete="off"/>
+                                            </div>
+                                        </div>
+                                        <div class="field field-confirm-password required">
+                                            <div class="control">
+                                                <input 
+                                                    type="password" 
+                                                    class="input-text" 
+                                                    id="registration-confirm-password" 
+                                                    name="password_confirmation" 
+                                                    data-validate="{required:true}" 
+                                                    data-bind="attr: {placeholder: $t('Confirm Password *')}" 
+                                                    autocomplete="off"/>
+                                            </div>
+                                        </div>
+                                        <!-- ko foreach: getRegion('additional-registration-form-fields') -->
+                                        <!-- ko template: getTemplate() --><!-- /ko -->
+                                        <!-- /ko -->
+                                    </div>
+                                    <p class="form__text-required-fields" data-bind="i18n: '* The fields marked with an asterisk (*) are mandatory.'"></p>
+                                    <div class="field agreement required" data-bind="visible: isAgreementEnabled">
                                         <div class="control">
                                             <input 
-                                                name="firstname" 
-                                                id="registration-firstname" 
-                                                type="text" 
-                                                class="input-text" 
-                                                data-bind="attr: {placeholder: $t('Firstname *')}" 
+                                                type="checkbox" 
+                                                class="input-checkbox checkbox"
+                                                id="agreement" 
+                                                name="agreement" 
                                                 data-validate="{required:true}" 
-                                                autocomplete="off"/>
+                                                value="1">
+                                                <label for="agreement" class="label"><span data-bind="html: agreementCheckboxText"></span></label>
                                         </div>
                                     </div>
-                                    <div class="field field-lastname required">
-                                        <div class="control">
-                                            <input 
-                                                name="lastname" 
-                                                id="registration-lastname" 
-                                                type="text" 
-                                                class="input-text" 
-                                                data-bind="attr: {placeholder: $t('Lastname *')}" 
-                                                data-validate="{required:true}" 
-                                                autocomplete="off"/>
+                                    <div class="actions-toolbar">
+                                        <input name="context" type="hidden" value="checkout" />
+                                        <div class="primary">
+                                            <button type="submit" class="button action action-registrate primary">
+                                                <span data-bind="i18n: 'Create an Account'"></span>
+                                            </button>
+                                        </div>
+                                        <div class="secondary">
+                                            <a class="action action-back" data-bind="click:showAction.bind($data,'login')">
+                                                <span data-bind="i18n: 'Sign in with an existing customer account'"></span>
+                                            </a>
                                         </div>
                                     </div>
-                                    <div class="field field-email required">
-                                        <div class="control">
-                                            <input 
-                                                name="email" 
-                                                id="registration-email" 
-                                                type="text" 
-                                                class="input-text" 
-                                                data-bind="attr: {placeholder: $t('Email Address *')}" 
-                                                data-validate="{required:true, 'validate-email':true}" 
-                                                autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                    <div class="field field-password required">
-                                        <div class="control">
-                                            <input 
-                                                type="password" 
-                                                class="input-text" 
-                                                id="registration-password" 
-                                                name="password" 
-                                                data-validate="{required:true}" 
-                                                data-bind="attr: {placeholder: $t('Password *')}" 
-                                                autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                    <div class="field field-confirm-password required">
-                                        <div class="control">
-                                            <input 
-                                                type="password" 
-                                                class="input-text" 
-                                                id="registration-confirm-password" 
-                                                name="password_confirmation" 
-                                                data-validate="{required:true}" 
-                                                data-bind="attr: {placeholder: $t('Confirm Password *')}" 
-                                                autocomplete="off"/>
-                                        </div>
-                                    </div>
-                                    <!-- ko foreach: getRegion('additional-registration-form-fields') -->
-                                    <!-- ko template: getTemplate() --><!-- /ko -->
-                                    <!-- /ko -->
-                                </div>
-                                <p class="form__text-required-fields" data-bind="i18n: '* The fields marked with an asterisk (*) are mandatory.'"></p>
-                                <div class="field agreement required" data-bind="visible: isAgreementEnabled">
-                                    <div class="control">
-                                        <input 
-                                            type="checkbox" 
-                                            class="input-checkbox checkbox"
-                                            id="agreement" 
-                                            name="agreement" 
-                                            data-validate="{required:true}" 
-                                            value="1">
-                                            <label for="agreement" class="label"><span data-bind="html: agreementCheckboxText"></span></label>
-                                    </div>
-                                </div>
-                                <div class="actions-toolbar">
-                                    <input name="context" type="hidden" value="checkout" />
-                                    <div class="primary">
-                                        <button type="submit" class="action action-registrate primary">
-                                            <span data-bind="i18n: 'Create an Account'"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                            <form data-bind="submit: navigateToNextStep" novalidate="novalidate">
-                                <p data-bind="i18n: 'Complete your purchase without registration. At the end of the process you can optionally create an account.'"></p>
-                                <div class="actions-toolbar">
-                                    <div class="primary">
-                                        <button type="submit" data-role="opc-continue" class="button action continue primary">
-                                            <span data-bind="i18n: 'Continue without registration'"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
