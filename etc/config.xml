@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Solution Pioneers
+ *
+ * @category    SolutionPioneers
+ * @package     SolutionPioneers_CheckoutLoginStep
+ * @copyright   Copyright (c) Solution Pioneers (https://www.solution-pioneers.com/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <solutionpioneers_checkout_login_step>
+            <create_account>
+                <confirm>0</confirm>
+            </create_account>
+            <agreement>
+                <enabled_agreement>0</enabled_agreement>
+            </agreement>
+        </solutionpioneers_checkout_login_step>
+    </default>
+</config>
