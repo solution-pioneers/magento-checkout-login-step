@@ -18,15 +18,20 @@ use Magento\Customer\Model\Session;
 use Magento\Customer\Model\Url as CustomerUrl;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Escaper;
 use Magento\Framework\Json\Helper\Data as JsonHelper;
 use Magento\Framework\UrlInterface;
+use Magento\Framework\Registry;
 use Magento\Store\Model\StoreManagerInterface;
+use Magento\Store\Model\ScopeInterface;
 
 class Register extends Action
 {
+    const XML_PATH_CREATE_ACCOUNT_CONFIRM = 'solutionpioneers_checkout_login_step/create_account/confirm';
+
     /**
      * @var Magento\Customer\Api\AccountManagementInterface
      */
@@ -68,6 +73,11 @@ class Register extends Action
     protected $formKeyValidator;
 
     /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
+    protected $config;
+
+    /**
      * @var \Magento\Framework\Json\Helper\Data
      */
     protected $helper;
@@ -81,6 +91,11 @@ class Register extends Action
      * @var \Magento\Customer\Model\Registration
      */
     protected $registration;
+
+    /**
+    * @var \Magento\Framework\Registry
+    */
+    private $registry;
 
     /**
      * @var \Magento\Framework\Controller\Result\JsonFactory
@@ -110,6 +125,8 @@ class Register extends Action
      * @param \Magento\Framework\Escaper $escaper
      * @param \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator
      * @param \Magento\Framework\Json\Helper\Data $helper
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface config
+     * @param \Magento\Framework\Registry $registry
      * 
      */
     public function __construct (
@@ -126,6 +143,8 @@ class Register extends Action
         Escaper $escaper,
         FormKeyValidator $formKeyValidator,
         JsonHelper $helper,
+        ScopeConfigInterface $config,
+        Registry $registry,
     ) {
         $this->accountManagement = $accountManagement;
         $this->customerFactory = $customerFactory;
@@ -139,6 +158,8 @@ class Register extends Action
         $this->registration = $registration;
         $this->resultJsonFactory = $resultJsonFactory;
         $this->urlModel = $urlModel;
+        $this->config = $config;
+        $this->registry = $registry;
 
         parent::__construct($context);
     }
@@ -195,6 +216,10 @@ class Register extends Action
             $extensionAttributes->setIsSubscribed($this->getRequest()->getParam('is_subscribed', false));
             $customer->setExtensionAttributes($extensionAttributes);
         
+            if (!$this->isCheckoutAccountRegistrationConfirmationRequired()) {
+                $this->registry->register('skip_confirmation_if_email', $this->getRequest()->getParam('email'));
+            }
+
             $customer = $this->accountManagement->createAccount($customer, $password);
 
             $this->_eventManager->dispatch(
@@ -202,9 +227,8 @@ class Register extends Action
                 ['account_controller' => $this, 'customer' => $customer]
             );
 
-
             $confirmationStatus = $this->accountManagement->getConfirmationStatus($customer->getId());
-
+        
             if ($confirmationStatus === AccountManagementInterface::ACCOUNT_CONFIRMATION_REQUIRED) {
                 $email = $this->customerUrl->getEmailConfirmationUrl($customer->getEmail());
 
@@ -215,12 +239,15 @@ class Register extends Action
                         $email
                     )
                 ];
+
             } else {
                 $this->session->setCustomerDataAsLoggedIn($customer);
                 $response = [
                     'errors' => false,
                     'message' => $this->getSuccessMessage()
                 ];
+
+                $this->messageManager->addSuccess(__($this->getSuccessMessage()));
             }
 
             if ($this->getCookieManager()->getCookie('mage-cache-sessid')) {
@@ -310,5 +337,13 @@ class Register extends Action
     protected function getSuccessMessage()
     {
         return __('Thank you for registering with %1.', $this->storeManager->getStore()->getFrontendName());
+    }
+
+    /**
+     * @return bool
+     */
+    protected function isCheckoutAccountRegistrationConfirmationRequired(): bool
+    {
+        return $this->config->getValue(self::XML_PATH_CREATE_ACCOUNT_CONFIRM, ScopeInterface::SCOPE_STORE);
     }
 }

@@ -37,11 +37,12 @@ define([
                         callback(registerData);
                     });
                 } else {
-                    messageContainer.addSuccessMessage(response);
                     callbacks.forEach(function (callback) {
                         callback(registerData);
                     });
-                    form.reset();
+                    messageContainer.addSuccessMessage(response);
+                    location.reload();
+                    
                 }
             }).fail(function () {
                 fullScreenLoader.stopLoader();

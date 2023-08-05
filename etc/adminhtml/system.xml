@@ -24,6 +24,13 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
+            <group id="create_account" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Create New Account</label>
+                <field id="confirm" type="select" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Require Email Confirmation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
             <group id="agreement" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                  <label>Agreement</label>
                  <field id="enabled_agreement" type="select" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
