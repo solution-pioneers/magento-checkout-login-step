@@ -1,7 +1,7 @@
 <li data-bind="fadeVisible: isVisible, attr: { id: stepCode }">
     <div class="step-title" data-bind="i18n: stepTitle" data-role="title"></div>
         <div id="checkout-step-login" class="checkout-step-login step-content" data-role="content">
-            <div class="step-actions" data-bind="visible: isGuest">
+            <div class="step-actions">
             <div class="authentication-wrapper" data-block="authentication" data-bind="visible: isLoginActionVisible">
                 <div class="block-authentication">
                     <!-- ko foreach: getRegion('before') -->

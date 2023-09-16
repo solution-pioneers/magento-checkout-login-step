@@ -40,8 +40,6 @@ define(
             isVisible: ko.observable(true),
             isRegisterActionVisible: ko.observable(false),
             isLoginActionVisible: ko.observable(true),
-            isLoggedIn: ko.observable(false),
-            isGuest: ko.observable(true),
             stepCode: 'login',
             stepTitle: 'Login',
             isAgreementEnabled: checkoutConfig.agreement_enabled,
@@ -63,8 +61,6 @@ define(
                 );
 
                 if (customer.isLoggedIn()) {
-                    this.isGuest(false);
-                    this.isLoggedIn(true);
                     stepNavigator.next();
                 }    
 
