@@ -47,7 +47,7 @@ define([
                         callback(loginData);
                     });
                     customerData.invalidate(['customer']);
-                    location.reload(); 
+                    location.reload();
                 }
             }).fail(function () {
                 fullScreenLoader.stopLoader();

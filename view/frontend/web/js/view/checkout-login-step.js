@@ -40,7 +40,6 @@ define(
             isVisible: ko.observable(true),
             isRegisterActionVisible: ko.observable(false),
             isLoginActionVisible: ko.observable(true),
-            customerEmail: '',
             isLoggedIn: ko.observable(false),
             isGuest: ko.observable(true),
             stepCode: 'login',
@@ -66,10 +65,7 @@ define(
                 if (customer.isLoggedIn()) {
                     this.isGuest(false);
                     this.isLoggedIn(true);
-                    this.isRegisterActionVisible(false);
-                    this.isLoginActionVisible(false);
-                    this.customerEmail = customer.customerData.email;
-                    this.stepTitle = $t('Logged in');
+                    stepNavigator.next();
                 }    
 
                 return this;
@@ -139,6 +135,12 @@ define(
              * @returns void
              */
             navigate: function () {
+                if (customer.isLoggedIn()) {
+                    this.isVisible(false);
+                    stepNavigator.next();
+                } else {
+                    self.isVisible(true);
+                }
             },
 
             /**

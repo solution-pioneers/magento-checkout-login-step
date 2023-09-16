@@ -9,6 +9,7 @@ define([
     storage, 
     globalMessageList, 
     fullScreenLoader,
+    stepNavigator,
     $t
     ) {
     'use strict';
@@ -42,7 +43,6 @@ define([
                     });
                     messageContainer.addSuccessMessage(response);
                     location.reload();
-                    
                 }
             }).fail(function () {
                 fullScreenLoader.stopLoader();
