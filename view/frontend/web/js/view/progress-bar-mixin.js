@@ -3,9 +3,10 @@ define([
     'underscore',
     'ko',
     'uiComponent',
+    'Magento_Customer/js/model/customer',
     'Magento_Checkout/js/model/step-navigator',
     'Magento_Checkout/js/view/billing-address'
-], function ($, _, ko, Component, stepNavigator, billingAddress) {
+], function ($, _, ko, Component, customer, stepNavigator, billingAddress) {
     'use strict';
 
         return function (Component) {
@@ -15,7 +16,7 @@ define([
                  * @override
                  */
                 navigateTo: function (step) {
-                    if (step.code === 'login') {
+                    if (customer.isLoggedIn() && step.code === 'login') {
                         return;
                     }
     

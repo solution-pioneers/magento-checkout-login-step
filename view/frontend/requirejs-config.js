@@ -4,7 +4,7 @@
  * @category   SolutionPioneers
  * @package    SolutionPioneers_CheckoutLoginStep
  * @author     Solution Pioneers <digital@solution-pioneers.com>
- * @copyright   Copyright (c) Solution Pioneers (https://www.solution-pioneers.com/)
+ * @copyright  Copyright (c) Solution Pioneers (https://www.solution-pioneers.com/)
  */
 var config = {
     config: {
