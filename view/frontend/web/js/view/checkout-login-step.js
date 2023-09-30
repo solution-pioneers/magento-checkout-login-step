@@ -67,6 +67,10 @@ define(
                 return this;
             },
 
+            /**
+             * 
+             * @returns string
+             */
             getFormKey: function () {
                 return window.checkoutConfig.formKey;
             },
@@ -114,6 +118,13 @@ define(
                 }
             },
 
+            /**
+             * Display container 
+             * 
+             * @param string action 
+             * 
+             * @returns void
+             */
             showAction: function(action) {
                 if (action === 'login') {
                     this.isLoginActionVisible(true);
@@ -125,6 +136,7 @@ define(
                     this.isLoginActionVisible(false);
                 }
 
+                window.scrollTo({top: 0});
             },
 
             /**
